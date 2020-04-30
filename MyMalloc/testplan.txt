@@ -1,0 +1,136 @@
+Nikita Kolotov
+Michala Rose
+
+Timing:
+real 0m0.007s
+user 0m0.004s
+sys  0m0.000s
+
+Test Case A: Malloc 1 byte, then immediately free it. Repeat 150 Times. Overall repeat the whole test case 100 times.
+Output: 2 microseconds
+
+Test Case B: Malloc 1 byte, store in an array, repeat 150 times. However, every 50 times, free 50 pointers. Thus repeating the process 3 times total.
+Output: 14 microseconds
+
+Test Case C: Randomly choosing between malloc 1 byte, or free a pointer (likely 1 byte). For this we used the rand() function to get as close to random as possible. This will decide whether to allocate or free, when allocating the array index will incriment in anticipation for the next pointer. However, when freeing it will first decriment so as to get the last used pointer. Then it will free and the whole process repeats until a total of 50 allocations have been completed.
+Output: 2 microseconds
+
+Test Case D: Using the rand() function again, we will determine whether or not to malloc or free. If we malloc then we use rand again to pick a random number between 1 and 64, we then allocate that as a pointer in the array. The free is the same from Test Case C. We will decriment the memgrind array index to get the last pointer, then free. This process will repeat until a total of 50 allocations have been processed.
+Output: 5 microseconds
+
+Test Case E: Checks to see if free will handle the error of freeing a pointer to static memory correctly. I initialize a static pointer then try to free it.
+Output: Unable to free. Please enter a valid pointer. File memgrind.c Line 215 (x100)
+0 microsecond
+
+
+Test Case F: Check to see if malloc with throw an error if the array has no more space based on a first fit algorithm. I malloc memory then strategically free memory leaving fragments smaller than the size needed to be malloced.
+Output: 5 microseconds
+
+OUTPUT APPENDED DIRECTLY FROM TEST:
+
+TEST A: Average Time 2 microseconds
+TEST B: Average Time 14 microseconds
+TEST C: Average Time 2 microseconds
+TEST D: Average Time 5 microseconds
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+Unable to free. Please enter a valid pointer. File: memgrind.c Line 215
+TEST E: Average Time 0 microseconds
+TEST F: Average Time 5 microseconds
